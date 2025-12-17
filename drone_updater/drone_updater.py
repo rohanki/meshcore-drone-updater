@@ -15,8 +15,7 @@ UNIVERSAL_FW = os.path.join(CONFIG_DIR, "firmware.zip")
 LOG_FILE = "/var/log/drone_updater.log"
 DFU_SCRIPT = os.path.join(WORK_DIR, "dfu_cli.py")
 PRN_VALUE = "4"
-# enable_verbose = "--verbose"
-enable_verbose = "--scan"
+extra_params = "--scan"
 
 # Configure Logging
 logging.basicConfig(
@@ -91,7 +90,7 @@ async def run_dfu(target_name, address, firmware_path):
     logging.info(f"FIRMWARE: {firmware_path}")
 
     # Standard fast command
-    cmd = [sys.executable, DFU_SCRIPT, "--prn", PRN_VALUE, enable_verbose, firmware_path, address]
+    cmd = [sys.executable, DFU_SCRIPT, "--prn", PRN_VALUE, extra_params, firmware_path, address]
 
     last_logged_percent = -1
     full_log_buffer = []
