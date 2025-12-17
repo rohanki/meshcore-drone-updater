@@ -1,0 +1,16 @@
+[Unit]
+Description=Firmware Auto-Downloader
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/opt/firmware_downloader/firmware_downloader.sh
+ExecStartPre=/bin/sleep 5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

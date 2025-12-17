@@ -1,0 +1,11 @@
+[Unit]
+Description=Custom power saving service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/power_saving/power_saving.sh
+User=root
+
+[Install]
+WantedBy=multi-user.target

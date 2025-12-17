@@ -1,0 +1,2 @@
+RAK4631_OTA /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+AdaDFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip

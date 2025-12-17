@@ -1,0 +1,18 @@
+[Unit]
+Description=nRF OTA Firmware Auto Updater Service for Drones
+After=network.target bluetooth.target
+After=firmware-downloader.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/drone_updater
+ExecStartPre=+/usr/sbin/rfkill unblock bluetooth
+ExecStart=/usr/bin/python3 /opt/drone_updater/auto_updater.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
