@@ -14,7 +14,7 @@ MAPPING_FILE = os.path.join(CONFIG_DIR, "firmware_mapping.txt")
 UNIVERSAL_FW = os.path.join(CONFIG_DIR, "firmware.zip")
 LOG_FILE = "/var/log/drone_updater.log"
 DFU_SCRIPT = os.path.join(WORK_DIR, "dfu_cli.py")
-PRN_VALUE = "4"
+PRN_VALUE = "8"
 extra_params = "--scan"
 
 # Configure Logging
@@ -181,23 +181,23 @@ async def service_loop():
             mapping = load_firmware_mapping()
             devices = await BleakScanner.discover(timeout=3.0)
 
-            found_bl_match = None
+            found_dfu_match = None
             found_other_mapped = None
 
             for dev in devices:
                 name = dev.name
                 if not name: continue
 
-                if name.endswith("_BL"):
+                if name.endswith("_DFU"):
                     if context["base_name"] and get_device_base(name) == context["base_name"]:
-                        found_bl_match = dev
+                        found_dfu_match = dev
                 elif name in mapping:
                     found_other_mapped = dev
 
             # Priority 1: Bootloader Loop
-            if found_bl_match and context["firmware"]:
-                logging.info(f"RECOVERY: Found {found_bl_match.name}. Flashing...")
-                await run_dfu(found_bl_match.name, found_bl_match.address, context['firmware'])
+            if found_dfu_match and context["firmware"]:
+                logging.info(f"RECOVERY: Found {found_dfu_match.name}. Flashing...")
+                await run_dfu(found_dfu_match.name, found_dfu_match.address, context['firmware'])
                 continue
 
             # Priority 2: New Device
