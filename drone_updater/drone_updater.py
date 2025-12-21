@@ -159,6 +159,11 @@ async def run_dfu(target_name, address, firmware_path):
 
         if process.returncode == 0:
             logging.info(f"SUCCESS: Flashing finished for {target_name}")
+            if os.path.exists(UNIVERSAL_FW):
+                os.remove(UNIVERSAL_FW)
+                logging.info(f"Removed override file: {UNIVERSAL_FW}")
+                logging.info("Restarting fresh.")
+                os.execv(sys.executable, [sys.executable] + sys.argv)
             return True
         else:
             logging.error(f"FAILED: Flashing ended with code {process.returncode}")

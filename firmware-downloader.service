@@ -1,14 +1,19 @@
 [Unit]
 Description=Firmware Auto-Downloader
+# Waite for network to be fully online (IP assigned)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=oneshot
+# Run as the default user 'pi' (change this if your user is different)
 User=root
 Group=root
+# The script to run
 ExecStart=/opt/firmware_downloader/firmware_downloader.sh
-ExecStartPre=/bin/sleep 5
+# Optional: Wait a few seconds to ensure DNS is ready after connection
+ExecStartPre=/bin/sleep 10
+# Logging
 StandardOutput=journal
 StandardError=journal
 

@@ -1,6 +1,8 @@
 [Unit]
 Description=nRF OTA Firmware Auto Updater Service for Drones
+# Wait for network and bluetooth
 After=network.target bluetooth.target
+# Wait for downloader service if it exists/is enabled
 After=firmware-downloader.service
 
 [Service]
@@ -11,6 +13,7 @@ ExecStartPre=+/usr/sbin/rfkill unblock bluetooth
 ExecStart=/usr/bin/python3 /opt/drone_updater/drone_updater.py
 Restart=always
 RestartSec=5
+# Output standard logs to journal as well
 StandardOutput=journal
 StandardError=journal
 

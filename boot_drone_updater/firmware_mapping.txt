@@ -1,2 +1,6 @@
-RAK4631_OTA /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
-AdaDFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+4631_R /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+4631_CB /opt/firmware_downloader/MeshCore/companion-ble/latest/RAK_4631_companion_radio_ble.zip
+4631_CU /opt/firmware_downloader/MeshCore/companion-usb/latest/RAK4631_companion_radio_usb.zip
+4631_RS /opt/firmware_downloader/MeshCore/room-server/latest/RAK4631_room_server.zip
+T114_R /opt/firmware_downloader/MeshCore/repeater/latest/Heltec_t114_repeater.zip
+T114_CB /opt/firmware_downloader/MeshCore/companion_ble/latest/Heltec_t114_companion_radio_ble.zip
