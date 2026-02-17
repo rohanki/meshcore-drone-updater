@@ -44,6 +44,7 @@ sleep 1
 
 echo " "
 echo "Copying files..."
+mkdir /boot/firmware/drone_updater/
 cp -r boot_drone_updater/* /boot/firmware/drone_updater/
 cp -r power_saving /opt/
 cp -r drone_updater /opt/
